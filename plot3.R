@@ -17,4 +17,6 @@ png(file="plot3.png") ### open file device
 plot(x=data_ext.sub$dt, y=data_ext.sub$Sub_metering_1, type="l", xlab="", ylab="Energy sub metering") # generate line plot1
 lines(x=data_ext.sub$dt, y=data_ext.sub$Sub_metering_2, col="red") # generate line plot2 (stacked over plot1)
 lines(x=data_ext.sub$dt, y=data_ext.sub$Sub_metering_3, col="blue") # generate line plot3 (stacked over plot1 & plot2)
+legend("topright", 0.5, lty=1, col=c("black", "red", "blue"), c("Sub_metering_1", "Sub_metering_2", "Sub_metering_3")) # create legend box
 dev.off() ### shut down file device
+
