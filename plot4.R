@@ -29,17 +29,15 @@ png(file="plot4.png") ### open file device
 par(mfcol=c(2,2))
  
 ##plot2
-plot(x=data_ext.sub$dt, y=data_ext.sub$Global_active_power, type="l", xlab="", ylab="Global Active Power (kilowatts)", cex.axis=0.7, cex.lab=0.7) # generate line plot
+plot(x=data_ext.sub$dt, y=data_ext.sub$Global_active_power, type="l", xlab="", ylab="Global Active Power (kilowatts)", cex.axis=1, cex.lab=1) # generate line plot
 ##plot3
-plot(x=data_ext.sub$dt, y=data_ext.sub$Sub_metering_1, type="l", xlab="", ylab="Energy sub metering", cex.axis=0.7, cex.lab=0.7) # generate line plot1
+plot(x=data_ext.sub$dt, y=data_ext.sub$Sub_metering_1, type="l", xlab="", ylab="Energy sub metering", cex.axis=1, cex.lab=1) # generate line plot1
 lines(x=data_ext.sub$dt, y=data_ext.sub$Sub_metering_2, col="red") # generate line plot2 (stacked over plot1)
 lines(x=data_ext.sub$dt, y=data_ext.sub$Sub_metering_3, col="blue") # generate line plot3 (stacked over plot1 & plot2)
-legend("topright", 0.5, lty=1, col=c("black", "red", "blue"), c("Sub_metering_1", "Sub_metering_2", "Sub_metering_3"), bty="n", cex=0.7) # create legend box
+legend("topright", 0.5, lty=1, col=c("black", "red", "blue"), c("Sub_metering_1", "Sub_metering_2", "Sub_metering_3"), bty="n", cex=0.8) # create legend box
 ##plot4
-plot(x=data_ext.sub$dt, y=data_ext.sub$Voltage, type="l", xlab="datetime", ylab="Voltage", cex.axis=0.7, cex.lab=0.7)
+plot(x=data_ext.sub$dt, y=data_ext.sub$Voltage, type="l", xlab="datetime", ylab="Voltage", cex.axis=1, cex.lab=1)
 ##plot4
-plot(x=data_ext.sub$dt, y=data_ext.sub$Global_reactive_power, type="l", xlab="datetime", ylab="Global_reactive_power", cex.axis=0.7, cex.lab=0.7)
+plot(x=data_ext.sub$dt, y=data_ext.sub$Global_reactive_power, type="l", xlab="datetime", ylab="Global_reactive_power", cex.axis=1, cex.lab=1)
 
 dev.off() ### shut down file device
-?par
-?legend
