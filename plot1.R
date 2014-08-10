@@ -1,13 +1,15 @@
-##### Plot 1
-getwd() ### get workspace
+#### Assignment 1 - Plot 1
 
-data<-read.table("household_power_consumption.txt", header=TRUE, sep=";", na.strings="?") ### read table
-head(data) ### head of data
+getwd() # get workspace
 
-data_use<-data ### copy original data into new "working-data"
-data_use$Date<-as.Date(data_use$Date, format="%d/%m/%Y") ### convert $Date from class 'factor' to 'Date'
-sub.data<-subset(data, data_use$Date>='2007-02-01' & data_use$Date<'2007-02-03') ### generate subset based on Dates
+consumption <- read.table("household_power_consumption.txt", header=TRUE, sep=";", na.strings="?") # read data
+  head(consumption) # check data
+  class(consumption$Date) # check class of Date
 
-png(file="plot1.png") ### open file device
-hist(sub.data$Global_active_power, col="red", xlab="Global Active Power (kilowatts)", main="Global Active Power") # generate plot
-dev.off() ### shut down file device
+consumption$Date <- as.Date(consumption$Date, format="%d/%m/%Y") # convert $Date from char to Date
+
+sub.consumption <- subset(consumption, consumption$Date>="2007-02-01" & consumption$Date<"2007-02-03") # generate subset from timeframe
+
+png(file="plot1.png") # open file device
+hist(sub.consumption$Global_active_power, col="red", xlab="Global Active Power (kilowatts", ylab="Frequency", main="Global Active Power") # generate histogram of global active power
+dev.off() # shut down file device

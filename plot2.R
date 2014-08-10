@@ -1,18 +1,24 @@
-######## Plot 2
-getwd() ### get workspace
+### Assignment 1 - plot 2
 
-data<-read.table("household_power_consumption.txt", header=TRUE, sep=";", na.strings="?") ### read table
-head(data) ### head of data
+consumption <- read.table("household_power_consumption.txt", header=TRUE, sep=";", na.strings="?") # read data
+head(consumption) # check data
+class(consumption$Date) # check class of Date
 
-### generate Dates through combining Date & Time
-dates<-paste(data$Date, data$Time) ### paste Date & Time
-dt<-strptime(as.character(dates), "%d/%m/%Y %H:%M:%S") ### generate POSIXlt container
+consumption$Date <- as.Date(consumption$Date, format="%d/%m/%Y") # convert $Date from char to Date
 
-data_ext<-cbind(data, dt) ### cbind POSIXlt elements to existing data
+datetime <- paste(consumption$Date, consumption$Time) # create datetime vector
+head(datetime)
 
-data_ext$Date<-as.Date(data_ext$Date, format="%d/%m/%Y") ### convert $Date from class 'factor' to 'Date'
-data_ext.sub<-subset(data_ext, data_ext$Date>='2007-02-01' & data_ext$Date<'2007-02-03') ### generate subset based on Dates
+?strptime
+datetime2 <- strptime(as.character(datetime), "%Y-%m-%d %H:%M:%S") # create date POSIXlt container
+head(datetime2)
 
-png(file="plot2.png") ### open file device
-plot(x=data_ext.sub$dt, y=data_ext.sub$Global_active_power, type="l", xlab="", ylab="Global Active Power (kilowatts)") # generate line plot
-dev.off() ### shut down file device
+consumption.ext <- cbind(consumption, datetime2) # bind POXISlt dates to consumption dataset
+head(consumption.ext)
+
+sub.consumption <- subset(consumption.ext, consumption$Date>="2007-02-01" & consumption$Date<"2007-02-03") # generate subset from timeframe
+head(sub.consumption)
+
+png(file="plot2.png") # open file device
+plot(x=sub.consumption$datetime2, y=sub.consumption$Global_active_power, type="l", xlab="", ylab = "Global Active Power (kilowatts)") # generate lineplot with active power over datetime2
+dev.off() # shut down file device
